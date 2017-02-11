@@ -7,6 +7,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title th:text="${title}">Hello Title</title>
 		<link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" href="../static/css/site.css" th:href="@{/css/site.css}" />
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     	<!--[if lt IE 9]>
@@ -16,9 +17,11 @@
 	</head>
 		
 	
-	<p th:fragment="footer">			
-		This is the footer
-		<script src="../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
-		<script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-	</p>
+	<footer th:fragment="footer"  class="footer">
+		<div class="container">
+			This is the footer
+			<script src="../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+			<script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+		</div>			
+	</footer>
 </html>
