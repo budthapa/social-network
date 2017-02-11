@@ -17,4 +17,10 @@ public class PageController {
 		log.info("Serving index page");
 		return "index";
 	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/addstatus")
+	String addStatus(){
+		log.info("Serving status page");
+		return "addStatus";
+	}
 }

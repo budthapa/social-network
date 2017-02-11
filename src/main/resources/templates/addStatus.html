@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layout::header"></head>
+<body>
+	<div th:replace="navbar::nav"></div>
+	<div class="container">
+		<form>
+			<div class="form-group">
+				<textarea name="text" rows="20" cols="50"></textarea>
+				<input type="submit" name="submit" value="Add Status"/>
+			</div>
+		</form>
+	</div>
+	<div th:replace="layout::footer"></div>
+</body>
+</html>
