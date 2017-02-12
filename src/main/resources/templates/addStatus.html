@@ -4,10 +4,10 @@
 <body>
 	<div th:replace="navbar::nav"></div>
 	<div class="container">
-		<form>
+		<form action="#" th:action="@{/addStatus}" th:object="${statusUpdate}" method="post">
 			<div class="form-group">
-				<textarea name="text" rows="20" cols="50"></textarea>
-				<input type="submit" name="submit" value="Add Status"/>
+				<textarea name="text" th:field="*{text}" rows="20" cols="50"></textarea>
+				<button type="submit" name="submit">Add Status</button>
 			</div>
 		</form>
 	</div>
