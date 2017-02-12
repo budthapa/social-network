@@ -1,11 +1,16 @@
 package com.budthapa.controller;
 
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.budthapa.domain.StatusUpdate;
 
 @Controller
 public class PageController {
@@ -18,8 +23,11 @@ public class PageController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/addstatus")
-	String addStatus(){
+	ModelAndView addStatus(ModelAndView modelAndView){
 		log.info("Serving status page");
-		return "addStatus";
+		modelAndView.setViewName("addStatus");
+		StatusUpdate statusUpdate=new StatusUpdate();
+		modelAndView.getModel().put("statusUpdate", statusUpdate);
+		return modelAndView;
 	}
 }

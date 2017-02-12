@@ -6,4 +6,9 @@ import com.budthapa.domain.StatusUpdate;
 
 public interface StatusUpdateDao extends CrudRepository<StatusUpdate, Long>{
 
+	/**
+	 * @return
+	 */
+	StatusUpdate findFirstByOrderByAddedDesc();
+
 }

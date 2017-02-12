@@ -63,5 +63,11 @@ public class StatusUpdate {
 	public void setAdded(Date added) {
 		this.added = added;
 	}
+
+	@Override
+	public String toString() {
+		return "StatusUpdate [id=" + id + ", text=" + text + ", added=" + added + "]";
+	}
+	
 	
 }
