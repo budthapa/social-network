@@ -27,6 +27,8 @@ public class StatusUpdate {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date added;
 	
+	public StatusUpdate(){}
+	
 	@PrePersist
 	private void onCreate(){
 		if(added==null){
