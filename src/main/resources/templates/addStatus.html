@@ -7,8 +7,15 @@
 		<div class="row">
 			<form action="#" th:action="@{/addStatus}" th:object="${statusUpdate}" method="post">
 				<div class="form-group">
+					<div th:if="${#fields.hasErrors('text')}">
+	    				<div class="alert alert-danger fade in">
+	        				<a href="#" class="close" data-dismiss="alert">&times;</a>
+								<strong th:errors="*{text}">Error!</strong>
+	    				</div>
+					</div>
+					
 					<label for="mystatus">What's going on?</label>					
-					<textarea id="mystatus" name="text" th:field="*{text}" rows="20" cols="50" class="form-control"></textarea>
+					<textarea id="mystatus" name="text" rows="20" cols="50" class="form-control"></textarea>
 				</div>
 				<div class="form-group">
 					<button type="submit" name="submit">Add Status</button>
