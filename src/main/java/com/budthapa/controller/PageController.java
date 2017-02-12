@@ -30,7 +30,11 @@ public class PageController {
 		log.info("Serving status page");
 		modelAndView.setViewName("addStatus");
 		StatusUpdate statusUpdate=new StatusUpdate();
+		//StatusUpdate latestStatusUpdate=statusUpdateService.getLatest();
+		
 		modelAndView.getModel().put("statusUpdate", statusUpdate);
+		modelAndView.getModel().put("latestStatusUpdate", latestStatusUpdate());
+		
 		return modelAndView;
 	}
 	
@@ -39,6 +43,12 @@ public class PageController {
 		log.info("Saving status");
 		modelAndView.setViewName("addStatus");
 		statusUpdateService.save(statusUpdate);
+		//StatusUpdate latestStatusUpdate=statusUpdateService.getLatest();
+		modelAndView.getModel().put("latestStatusUpdate", latestStatusUpdate());
 		return modelAndView;
+	}
+	
+	private StatusUpdate latestStatusUpdate(){
+		return statusUpdateService.getLatest();
 	}
 }
