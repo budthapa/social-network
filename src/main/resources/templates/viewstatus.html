@@ -17,7 +17,7 @@
 					
 					<div class="list-group">
 						<a th:each="pagelist : ${page}" th:href="${pagelist.id}"
-							class="list-group-item"><b th:text="${pagelist.text}"></b></a>
+							class="list-group-item"><span th:utext="${pagelist.text}"></span></a>
 					</div>
 				</div>
 			</div>
