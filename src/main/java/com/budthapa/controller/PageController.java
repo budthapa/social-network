@@ -45,6 +45,7 @@ public class PageController {
 		if(!result.hasErrors()){
 			statusUpdateService.save(statusUpdate);			
 			modelAndView.getModel().put("statusUpdate", new StatusUpdate());
+			modelAndView.setViewName("redirect:/viewstatus");
 		}
 		
 		modelAndView.getModel().put("latestStatusUpdate", latestStatusUpdate());

@@ -8,17 +8,18 @@
 	<body>
 		<div layout:fragment="content">
 			<div class="container">
-			<div class="pagination pagination-centered">
-			<ul class="pagination">
-				<li th:each="pageNumber:${#numbers.sequence(1,page.totalPages)}">
-					<a th:href="@{/viewstatus/(p=${pageNumber})}"><span th:text="${pageNumber}"></span></a>
-				</li>
-			</ul>
-				<div class="list-group">
-					<a th:each="pagelist : ${page}" th:href="${pagelist.id}"
-						class="list-group-item"><b th:text="${pagelist.text}"></b></a>
+				<div class="pagination pagination-centered">
+					<ul class="pagination">
+						<li th:each="pageNumber:${#numbers.sequence(1,page.totalPages)}">
+							<a th:href="@{/viewstatus(p=${pageNumber})}"><span th:text="${pageNumber}"></span></a>
+						</li>
+					</ul>
+					
+					<div class="list-group">
+						<a th:each="pagelist : ${page}" th:href="${pagelist.id}"
+							class="list-group-item"><b th:text="${pagelist.text}"></b></a>
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	</body>
