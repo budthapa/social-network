@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">	
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">	
 	<head th:fragment="header">
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -15,8 +15,11 @@
       	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	    <![endif]-->
 	</head>
-		
-	
+	<body>
+	<div th:replace="navbar::nav"></div>
+	<div layout:fragment="content">
+		Page content goes here
+	</div>
 	<footer th:fragment="footer"  class="footer">
 		<div class="container">
 			This is the footer
@@ -24,4 +27,5 @@
 			<script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 		</div>			
 	</footer>
+	</body>
 </html>

@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8"/>
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+	<head>
+		<title>View status list</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="container">
+				<div class="list-group">
+					<a th:each="pagelist : ${page}" th:href="${pagelist.id}"
+						class="list-group-item"><b th:text="${pagelist.text}"></b></a>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
