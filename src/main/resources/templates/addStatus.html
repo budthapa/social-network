@@ -36,5 +36,11 @@
 		</div>
 	</div>
 	<div th:replace="layout::footer"></div>
+	<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  	<script>tinymce.init({ 
+  			selector:'textarea',
+  			plugins:"link"
+  		});
+  	</script>
 </body>
 </html>
