@@ -54,9 +54,6 @@ public class PageController {
 	@RequestMapping(value="/viewstatus", method=RequestMethod.GET)
 	ModelAndView viewStatus(ModelAndView modelAndView, @RequestParam(name="p", defaultValue="1") int pageNumber){
 		Page<StatusUpdate> page=statusUpdateService.getPage(pageNumber);
-		for(StatusUpdate p:page.getContent()){
-			System.out.println("Pge content "+p.getText());
-		}
 		modelAndView.getModel().put("page", page);
 		modelAndView.setViewName("viewstatus");
 		return modelAndView;
