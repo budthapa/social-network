@@ -15,20 +15,18 @@
 						</li>
 					</ul>
 					
-					<div class="">
-						<div class="list-group container">
-						<div th:each="pagelist : ${page}" class="row">
-							<div class="col-xs-9">
-								<span th:utext="${pagelist.text}" class="list-group-item"></span>
+					<div class="list-group">
+						<div th:each="pagelist : ${page}" class="row list-group-item">
+							<div class="col-xs-9 ">
+								<span th:utext="${pagelist.text}"></span>
 							</div>
-							<div class="col-xs-3 pull-right">
+							<div class="col-xs-offset-1 col-xs-2 ">
 									<a th:href="${'/editstatus/' + pagelist.id}">
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> | 
 									
 									<a th:href="@{/deletestatus(id=${pagelist.id})}" onclick="return confirm('Are you sure you want to delete?')">
 									<i class="fa fa-trash" aria-hidden="true"></i></a>
 							</div>
-						</div>
 						</div>
 					</div>
 				</div>
