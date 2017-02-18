@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8"/>
+<title>Edit Status</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container">
+		<div class="row">
+			<form th:action="@{/editstatus}" th:object="${statusUpdate}" th:method="post">
+				<input th:field="*{id}" type="hidden" />
+				<div class="form-group">
+					<div th:if="${#fields.hasErrors('text')}">
+	    				<div class="alert alert-danger fade in">
+	        				<a href="#" class="close" data-dismiss="alert">&times;</a>
+								<strong th:errors="*{text}">Error!</strong>
+	    				</div>
+					</div>
+				 	
+					<label for="mystatus">What's going on?</label>					
+					<textarea id="mystatus" th:field="*{text}" name="text" rows="20" cols="50" class="form-control"></textarea>
+				</div>
+				<div class="form-group">
+					<button type="submit" name="submit">Update Status</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  	<script>
+  		tinymce.init({ 
+  			selector:'textarea',
+  			plugins:"link"
+  		});
+  	</script>
+	</div>
+</body>
+</html>

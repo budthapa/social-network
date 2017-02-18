@@ -47,4 +47,12 @@ public class StatusUpdateService {
 	public boolean idExists(Long id) {
 		return statusUpdateDao.exists(id);
 	}
+
+	/**
+	 * @param id
+	 */
+	public StatusUpdate getStatus(Long id) {
+		// TODO Auto-generated method stub
+		return statusUpdateDao.findOne(id);
+	}
 }
