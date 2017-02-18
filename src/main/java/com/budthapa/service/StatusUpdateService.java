@@ -22,7 +22,7 @@ public class StatusUpdateService {
 	@Autowired
 	private StatusUpdateDao statusUpdateDao;
 	
-	private final static int PAGESIZE=3;
+	private final static int PAGESIZE=8;
 	
 	public void save(StatusUpdate statusUpdate){
 		statusUpdateDao.save(statusUpdate);
@@ -35,5 +35,16 @@ public class StatusUpdateService {
 	public Page<StatusUpdate> getPage(int pageNumber){
 		PageRequest request = new PageRequest(pageNumber-1,PAGESIZE,Sort.Direction.DESC,"added");
 		return statusUpdateDao.findAll(request);
+	}
+	
+	public void delete(Long id){
+		statusUpdateDao.delete(id);
+	}
+
+	/**
+	 * @param id
+	 */
+	public boolean idExists(Long id) {
+		return statusUpdateDao.exists(id);
 	}
 }

@@ -15,9 +15,22 @@
 						</li>
 					</ul>
 					
-					<div class="list-group">
-						<a th:each="pagelist : ${page}" th:href="${pagelist.id}"
-							class="list-group-item"><span th:utext="${pagelist.text}"></span></a>
+					<div class="">
+						<div class="list-group container">
+						<div th:each="pagelist : ${page}" class="row">
+							<div class="col-xs-9">
+								<a th:href="${pagelist.id}" class="list-group-item">
+								<span th:utext="${pagelist.text}"></span></a>
+							</div>
+							<div class="col-xs-3 pull-right">
+									<a th:href="@{/editstatus(id=${pagelist.id})}">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> | 
+									
+									<a th:href="@{/deletestatus(id=${pagelist.id})}" onclick="return confirm('Are you sure you want to delete?')">
+									<i class="fa fa-trash" aria-hidden="true"></i></a>
+							</div>
+						</div>
+						</div>
 					</div>
 				</div>
 			</div>
