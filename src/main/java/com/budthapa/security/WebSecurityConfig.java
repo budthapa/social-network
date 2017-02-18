@@ -22,7 +22,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 				.antMatchers("/").permitAll()
 				.antMatchers("/js/*","/css/*","/img/*").permitAll()
-			.anyRequest().authenticated();
+			.anyRequest().authenticated()
+				.and()
+			.formLogin()
+				.loginPage("/login")
+				.defaultSuccessUrl("/")
+				.permitAll();
 	}
 
 }
