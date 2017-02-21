@@ -29,18 +29,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.formLogin()
 				.loginPage("/login")
 				.defaultSuccessUrl("/")
-				.permitAll();
+				.permitAll()
+				.and()
+			.logout().permitAll();
 	}
-	/*
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 		auth.inMemoryAuthentication().withUser("buddhi").password("123456").roles("USER");
 	}
-	*/
+	
+	/*
 	@Autowired
 	 public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {    
 	  auth.inMemoryAuthentication().withUser("buddhi").password("123456").roles("USER");
 	 }
-	
+	*/
 
 }

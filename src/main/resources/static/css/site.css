@@ -30,3 +30,11 @@ body {
 .container .text-muted {
   margin: 20px 0;
 }
+
+.loginUser{
+	float: left;
+	margin:  13px 0 0 13px;
+}
+.signoutForm{
+	margin:7px;
+}
