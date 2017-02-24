@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.budthapa.service.UserService;
+
 /**
  * @author budthapa
  * Feb 18, 2017
@@ -19,6 +21,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
+	@Autowired 
+	UserService userService;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -33,10 +38,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.and()
 			.logout().permitAll();
 	}
+	/*
+	 * Only Needed for inmemory authentication. Remove this code after implementing the real user in database
+	 */
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 		auth.inMemoryAuthentication().withUser("buddhi").password("123456").roles("USER");
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userService);
 	}
 	
 	/*
@@ -46,4 +59,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	 }
 	*/
 
+	
 }
