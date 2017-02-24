@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.budthapa.domain.SiteUser;
@@ -29,7 +30,13 @@ public class UserService implements UserDetailsService{
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	
 	public void register(SiteUser siteUser){
+		siteUser.setPassword(passwordEncoder.encode(siteUser.getPassword()));
+		siteUser.setRole("ROLE_USER");
 		userDao.save(siteUser);
 	}
 
@@ -45,7 +52,7 @@ public class UserService implements UserDetailsService{
 			throw new UsernameNotFoundException("Username not found");
 		}
 		
-		List<GrantedAuthority> auth=AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
+		List<GrantedAuthority> auth=AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRole());
 		String password = user.getPassword();
 		return new User(email,password,auth);
 	}
