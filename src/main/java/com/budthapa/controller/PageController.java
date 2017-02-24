@@ -21,6 +21,7 @@ import com.budthapa.domain.StatusUpdate;
 import com.budthapa.service.StatusUpdateService;
 
 @Controller
+@EnableGlobalMethodSecurity(securedEnabled=true)
 public class PageController {
 	static final Logger log = LoggerFactory.getLogger(PageController.class);
 	
@@ -32,6 +33,7 @@ public class PageController {
 		return "index";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(method=RequestMethod.GET, value={"/addstatus", "/addStatus"})
 	ModelAndView addStatus(ModelAndView modelAndView, @ModelAttribute("statusUpdate") StatusUpdate statusUpdate){
 		modelAndView.setViewName("addStatus");
