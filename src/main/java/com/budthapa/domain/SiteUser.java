@@ -9,6 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * @author budthapa
@@ -26,10 +32,20 @@ public class SiteUser {
 	private Long id;
 	
 	@Column(name="email", unique=true)
+	@Email(message="{register.email.invalid}")
+	@NotBlank(message="{register.email.invalid}")
 	private String email;
 	
 	@Column(name="password")
+	//@NotBlank(message="{register.password.empty}")
 	private String password;
+
+	
+	@Transient	
+	@Size(min=8, max=16, message="{register.password.size}")
+	@NotBlank(message="{register.password.empty}")
+	private String plainPassword;
+	
 
 	@Column(name="role", length=20)
 	private String role;
@@ -65,6 +81,16 @@ public class SiteUser {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public String getPlainPassword() {
+		return plainPassword;
+	}
+
+	public void setPlainPassword(String plainPassword) {
+		this.password = new BCryptPasswordEncoder().encode(plainPassword);
+		this.plainPassword=plainPassword;
+	}
+	
 	
 	
 	

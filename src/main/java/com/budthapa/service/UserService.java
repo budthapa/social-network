@@ -32,11 +32,10 @@ public class UserService implements UserDetailsService{
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
 	
 	public void register(SiteUser siteUser){
-		siteUser.setPassword(passwordEncoder.encode(siteUser.getPassword()));
 		siteUser.setRole("ROLE_USER");
+//		siteUser.setPassword(passwordEncoder.encode(siteUser.getPassword()));
 		userDao.save(siteUser);
 	}
 
