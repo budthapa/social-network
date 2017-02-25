@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.budthapa.domain.SiteUser;
@@ -30,8 +29,8 @@ public class UserService implements UserDetailsService{
 	@Autowired
 	private UserDao userDao;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 	
 	public void register(SiteUser siteUser){
 		siteUser.setRole("ROLE_USER");

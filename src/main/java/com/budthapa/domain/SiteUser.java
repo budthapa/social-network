@@ -16,6 +16,8 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.budthapa.validation.PasswordMatch;
+
 /**
  * @author budthapa
  * Feb 23, 2017
@@ -24,6 +26,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name="user")
+@PasswordMatch(message="{register.password.mismatch}")
 public class SiteUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -42,10 +45,14 @@ public class SiteUser {
 
 	
 	@Transient	
-	@Size(min=8, max=16, message="{register.password.size}")
+	@Size(min=8, max=32, message="{register.password.size}")
 	@NotBlank(message="{register.password.empty}")
 	private String plainPassword;
 	
+	@Transient
+	//@Size(min=8, max=16, message="{register.password.size}")
+	//@NotBlank(message="{register.password.empty}")
+	private String repeatPassword;
 
 	@Column(name="role", length=20)
 	private String role;
@@ -89,6 +96,14 @@ public class SiteUser {
 	public void setPlainPassword(String plainPassword) {
 		this.password = new BCryptPasswordEncoder().encode(plainPassword);
 		this.plainPassword=plainPassword;
+	}
+
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
 	}
 	
 	
