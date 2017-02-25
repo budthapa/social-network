@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.budthapa.security;
+package com.budthapa.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

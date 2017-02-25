@@ -1,5 +1,6 @@
 package com.budthapa.controller;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.budthapa.domain.SiteUser;
+import com.budthapa.service.EmailService;
 import com.budthapa.service.UserService;
 
 @Controller
@@ -18,6 +20,9 @@ public class AuthController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	EmailService emailService;
 	
 	@RequestMapping("/login")
 	String admin(){
@@ -34,11 +39,14 @@ public class AuthController {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	ModelAndView register(ModelAndView modelAndView, @Valid @ModelAttribute("user") SiteUser user, BindingResult result){
+	ModelAndView register(ModelAndView modelAndView, @Valid @ModelAttribute("user") SiteUser user, BindingResult result) throws MessagingException{
 		modelAndView.setViewName("register");
 		if(!result.hasErrors()){
 			userService.register(user);
-			System.out.println("user submitted password: =======> "+user.getPassword());
+			
+			System.out.println("sending email : "+user.getEmail());
+			emailService.sendVerificationEmail(user.getEmail());
+			
 			modelAndView.setViewName("redirect:/");
 		}
 		return modelAndView;
