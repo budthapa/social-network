@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 /**
  * @author budthapa Feb 25, 2017
@@ -27,7 +29,26 @@ public class EmailService {
 
 	@Value("${mail.enable}")
 	private Boolean enable;
+/*
+	private TemplateEngine templateEngine;
 
+	public EmailService(){}
+	
+	@Autowired
+	public EmailService(TemplateEngine templateEngine){
+		this.templateEngine=templateEngine;
+	}
+	
+	public String buildMail(MimeMessage message){
+		Context context = new Context();
+		context.setVariable("message", message);
+		return templateEngine.process("emailTemplate", context);
+	}
+	*/
+	
+	@Autowired
+	private MailContentBuilder mailContentBuilder;
+	
 	public void sendVerificationEmail(String emailAddress) throws MessagingException {
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
@@ -36,8 +57,12 @@ public class EmailService {
 		messageHelper.setFrom(new InternetAddress("no-reply@budthapa.pro"));
 		messageHelper.setSubject("verify for your email");
 		messageHelper.setSentDate(new Date());
-
-		messageHelper.setText("Testing the email sending feature");
+		
+		
+		String content = mailContentBuilder.buildMessage(message);
+		messageHelper.setText(content);
+		
+//		messageHelper.setText("Testing the email sending feature");
 
 		if (enable) {
 			mailSender.send(message);
